@@ -16,6 +16,9 @@ namespace SeleniumWebDriverTemplateProject.Pages
         [FindsBy(How = How.LinkText, Using = "Pop")]
         public IWebElement  Pop{ get; set; }
 
+        [FindsBy(How = How.ClassName, Using = "list-group")]
+        public IWebElement AllAlbums { get; set; }
+
         public static ProductPage NavigateTo(IWebDriver driver)
         {
             var homePage  = HomePage.NavigateTo(driver);
@@ -29,6 +32,12 @@ namespace SeleniumWebDriverTemplateProject.Pages
             var productPageInstance = PageFactoryExtensions.InitPage<ProductPage>(driver);
 
             return productPageInstance;
+        }
+
+        public IList<IWebElement> GetAlbums()
+        {
+            IList<IWebElement> list = AllAlbums.FindElements(By.ClassName("list-group-item")).ToList();
+            return list;
         }
     }
 

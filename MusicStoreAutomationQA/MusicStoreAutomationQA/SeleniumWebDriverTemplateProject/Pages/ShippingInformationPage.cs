@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SeleniumWebDriverTemplateProject.Helpers;
 using SeleniumWebDriverTemplateProject.Pages.Abstract;
 
 namespace SeleniumWebDriverTemplateProject.Pages
@@ -41,8 +43,18 @@ namespace SeleniumWebDriverTemplateProject.Pages
         [FindsBy(How = How.Id, Using = "PromoCode")]
         public IWebElement PromoCode { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = "div.container:nth-child(2) > form:nth-child(1) > input:nth-child(6)")]
         public IWebElement Submit { get; set; }
+
+        public static ShippingInformationPage NavigateTo(IWebDriver driver)
+        {
+            var checkoutPage = CheckoutPage.NavigateTo(driver);
+            Thread.Sleep(2000);
+            checkoutPage.Checkoutbutton.Click();
+            Thread.Sleep(2000);
+            var shippingInformationPageInstance = PageFactoryExtensions.InitPage<ShippingInformationPage>(driver);
+
+            return shippingInformationPageInstance;
+        }
     }
 }

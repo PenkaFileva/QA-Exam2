@@ -44,6 +44,15 @@ namespace SeleniumWebDriverTemplateProject.Tests
             var productPageIns = ProductPage.NavigateTo(this.Driver);
             Thread.Sleep(2000);
             productPageIns.Pop.Click();
+            //foreach (var album in productPageIns.GetAlbums())
+            //{
+            //    string text = album.Text;
+            //    if (text == "Pop")
+            //    {
+            //        string url = productPageIns.GetAlbums()..GetAttribute("href");
+            //        Driver.Navigate().GoToUrl(url);
+            //    }
+            //}
 
             Thread.Sleep(2000);
             var popAlbumPage = PageFactoryExtensions.InitPage<PopAlbumsPage>(this.Driver);
